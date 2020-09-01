@@ -22,7 +22,7 @@ class OpenRepoApp : Application() {
     override fun onCreate() {
         super.onCreate()
         appComponent = OpenRepoComponent(this)
-        repository = Repository.attach(
+        repository = Repository.init(
             appComponent.getRemoteDataSource(),
             appComponent.getLoginDataSource(),
             appComponent.getAppConfigDaraSource()

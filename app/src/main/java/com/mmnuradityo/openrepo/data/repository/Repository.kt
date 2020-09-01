@@ -4,8 +4,8 @@ import com.mmnuradityo.openrepo.data.datastore.local.AppConfigDaraSource
 import com.mmnuradityo.openrepo.data.datastore.local.LoginDataSource
 import com.mmnuradityo.openrepo.data.datastore.remote.RemoteData
 import com.mmnuradityo.openrepo.data.model.GithubProfile
-import com.mmnuradityo.openrepo.data.model.repository.GithubRepository
 import com.mmnuradityo.openrepo.data.model.follower.Follower
+import com.mmnuradityo.openrepo.data.model.repository.GithubRepository
 import io.reactivex.rxjava3.functions.Consumer
 import org.json.JSONObject
 
@@ -24,7 +24,11 @@ class Repository private constructor(
         private var INSTANCE: Repository? = null
 
         @JvmStatic
-        fun attach(remoteData: RemoteData, loginData: LoginDataSource?, appConfig: AppConfigDaraSource?) =
+        fun init(
+            remoteData: RemoteData,
+            loginData: LoginDataSource?,
+            appConfig: AppConfigDaraSource?
+        ) =
             INSTANCE ?: synchronized(Repository::class.java) {
                 INSTANCE ?: Repository(remoteData, loginData, appConfig).also { INSTANCE = it }
             }

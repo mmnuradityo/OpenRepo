@@ -91,7 +91,7 @@ class HomeFragment : BaseFragment<HomeFragment>() {
                     appBarSlider(it, appBarLayout, offset)
                 }
 
-                openRepo.observe(it, Observer { onRepoClicked(it) })
+                openRepo.observe(it, Observer { data -> onRepoClicked(data, it as MainActivity) })
             }
         }
 
@@ -145,9 +145,9 @@ class HomeFragment : BaseFragment<HomeFragment>() {
         onError(state.onError)
     }
 
-    private fun onRepoClicked(data: GithubRepository) {
-        (activity as MainActivity).replaceFragmentWithBackStack(
-            (activity as MainActivity).getFrameFragment(),
+    private fun onRepoClicked(data: GithubRepository, main: MainActivity) {
+        main.replaceFragmentWithBackStack(
+            main.getFrameFragment(),
             RepositoryFragment.newInstance(data)
         )
     }
