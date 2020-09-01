@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">OpenRepo</string>
+    <string name="switch_blank_text" tools:ignore="ExtraTranslation"> </string>
+    <string name="app_detail">OpenRepo is a sample android application base on MVVM architecture and Github open api.</string>
+    <string name="repo_search">Search repository</string>
+    <string name="repo_not_found">The repository could not be found!</string>
+
+</resources>

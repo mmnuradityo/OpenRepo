@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="loginClick"
+            type="com.mmnuradityo.openrepo.utils.ActionClick" />
+
+        <variable
+            name="forgotClick"
+            type="com.mmnuradityo.openrepo.utils.ActionClick" />
+
+        <variable
+            name="createdClick"
+            type="com.mmnuradityo.openrepo.utils.ActionClick" />
+
+        <variable
+            name="vm"
+            type="com.mmnuradityo.openrepo.viewmodel.LoginVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark">
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginBottom="@dimen/large_size"
+            android:background="@drawable/ic_circle"
+            android:backgroundTint="@android:color/white"
+            android:indeterminate="true"
+            android:indeterminateDrawable="@drawable/ic_openrepo"
+            android:padding="@dimen/normal_size"
+            app:layout_constraintBottom_toTopOf="@+id/tvLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/normal_size"
+            android:text="Openrepo Login"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/loginContainer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="HardcodedText" />
+
+        <LinearLayout
+            android:id="@+id/loginContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/large_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/userName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/large_size"
+                android:hint="Username"
+                tools:ignore="Autofill,HardcodedText,TextFields" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/large_size"
+                android:hint="Password"
+                android:inputType="textPassword"
+                tools:ignore="Autofill,HardcodedText" />
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_margin="@dimen/large_size"
+                android:onClick="@{()-> loginClick.onClick()}"
+                android:text="Login"
+                app:btnActivated="@{vm.isBtnActive}"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvForgotPass"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:gravity="center"
+            android:onClick="@{() -> forgotClick.onClick()}"
+            android:padding="@dimen/normal_size"
+            android:text="Forgot your password?"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/loginContainer"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tvNew"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="72dp"
+            android:gravity="center"
+            android:text="New to Github?"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/tvForgotPass"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tvCreateAccount"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:gravity="center"
+            android:onClick="@{() -> createdClick.onClick()}"
+            android:padding="@dimen/normal_size"
+            android:text="Created an account"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/tvNew"
+            tools:ignore="HardcodedText" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#212121</color>
+    <color name="colorPrimaryLight">#757575</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#FF5722</color>
+
+    <!--    application color   -->
+    <color name="background">#3F3F3F</color>
+    <color name="colorIcon">#FFFFFF</color>
+    <color name="lightYellow">#F8F5EF</color>
+    <color name="lightGray">#AAAAAA</color>
+    <color name="darkGray">#EEEEEE</color>
+    <color name="textColor">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="secondaryTextColor">#FFFFFF</color>
+    <color name="textRepo">#757575</color>
+    <color name="textSearch">#757575</color>
+    <color name="divider">#BDBDBD</color>
+
+    <!--    transparent color   -->
+    <color name="trLightYellow">#C2F8F5EF</color>
+    <color name="trLightGray">#A3EEEEEE</color>
+    <color name="trDarkGray">#D1AAAAAA</color>
+    <color name="trBlack">#B0FFFFFF</color>
+    <color name="trWhite">#B0FFFFFF</color>
+    <color name="trBackground">#1CFFFFFF</color>
+    <color name="colorGray">#C4C4C4</color>
+
+</resources>

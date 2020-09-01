@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.mmnuradityo.openrepo.viewmodel.FollowerVM" />
+
+        <variable
+            name="followersClick"
+            type="com.mmnuradityo.openrepo.utils.ActionClick" />
+
+        <variable
+            name="followingClick"
+            type="com.mmnuradityo.openrepo.utils.ActionClick" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <RelativeLayout
+            android:id="@+id/containerFollowers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="58dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvFollowers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvFollowers"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:overScrollMode="never"
+                android:paddingTop="@dimen/normal_size"
+                android:paddingStart="@dimen/large_size"
+                android:paddingEnd="@dimen/large_size"
+                android:paddingBottom="@dimen/large_size"
+                android:layout_alignParentBottom="true"
+                android:visibility="gone"
+                app:followersList="@{vm.followerList}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <TextView
+                android:id="@+id/tvFollowers"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:background="@drawable/selector_rectangle_green"
+                android:backgroundTint="@color/background"
+                android:gravity="center_vertical"
+                android:onClick="@{()-> followersClick.onClick()}"
+                android:paddingStart="58dp"
+                android:text="Followers"
+                android:textColor="@color/colorIcon"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,RtlSymmetry" />
+
+            <ImageView
+                android:id="@+id/ivFollowers"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/tvFollowers"
+                android:layout_alignBottom="@+id/tvFollowers"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/large_size"
+                android:src="@drawable/ic_up"
+                tools:ignore="ContentDescription" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/containerFollowing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-58dp"
+            android:layout_below="@id/containerFollowers">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvFollowing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvFollowing"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:overScrollMode="never"
+                android:layout_alignParentBottom="true"
+                android:paddingTop="@dimen/normal_size"
+                android:paddingStart="@dimen/large_size"
+                android:paddingEnd="@dimen/large_size"
+                android:paddingBottom="@dimen/large_size"
+                android:visibility="gone"
+                app:followingList="@{vm.followingList}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <TextView
+                android:id="@+id/tvFollowing"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:background="@drawable/selector_rectangle_green"
+                android:backgroundTint="@color/background"
+                android:gravity="center_vertical"
+                android:onClick="@{()-> followingClick.onClick()}"
+                android:paddingStart="58dp"
+                android:text="Following"
+                android:textColor="@color/colorIcon"
+                android:textSize="18sp"
+                tools:ignore="HardcodedText,RtlSymmetry" />
+
+            <ImageView
+                android:id="@+id/ivFollowing"
+                android:layout_width="32dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/tvFollowing"
+                android:layout_alignBottom="@+id/tvFollowing"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/large_size"
+                android:src="@drawable/ic_up"
+                tools:ignore="ContentDescription" />
+
+            <View
+                android:id="@+id/liner"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/colorIcon" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</layout>

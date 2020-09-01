@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.mmnuradityo.openrepo.viewmodel.MainVM" />
+
+        <variable
+            name="hideSearch"
+            type="com.mmnuradityo.openrepo.utils.ActionClick" />
+
+        <variable
+            name="onTouch"
+            type="android.view.View.OnTouchListener" />
+
+        <variable
+            name="onDrag"
+            type="android.view.View.OnDragListener" />
+
+        <variable
+            name="onSearch"
+            type="com.mmnuradityo.openrepo.utils.search.SearchTextWatcher" />
+
+        <variable
+            name="onActionEnter"
+            type="android.widget.TextView.OnEditorActionListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rootContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical"
+        app:dragShowMenu="@{onDrag}"
+        tools:context=".ui.activity.MainActivity">
+
+        <FrameLayout
+            android:id="@+id/frameMain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <FrameLayout
+            android:id="@+id/frameSearch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="@{()-> hideSearch.onClick()}"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/large_size"
+                android:backgroundTint="@color/colorIcon"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="@dimen/normal_size"
+                android:drawableTint="@color/textSearch"
+                android:hint="Search Repository"
+                android:imeOptions="actionSearch"
+                android:inputType="text|textCapSentences"
+                android:maxLines="1"
+                android:textColor="@color/textSearch"
+                android:textColorHint="@color/textSearch"
+                android:textSize="16sp"
+                app:editorActionListener="@{onActionEnter}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:searchRepo="@{onSearch}"
+                tools:ignore="Autofill,HardcodedText,TextFields,UnusedAttribute" />
+
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/btnDragMenu"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:paddingTop="@dimen/medium_size"
+            android:paddingBottom="@dimen/large_size"
+            android:src="@drawable/ic_up"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:startAnim="@{vm.startAnim}"
+            app:touchShowMenu="@{onTouch}"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

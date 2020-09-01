@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="menuClick"
+            type="com.mmnuradityo.openrepo.utils.ActionClick" />
+
+        <variable
+            name="searchClick"
+            type="com.mmnuradityo.openrepo.utils.ActionClick" />
+
+        <variable
+            name="settingClick"
+            type="com.mmnuradityo.openrepo.utils.ActionClick" />
+
+        <variable
+            name="exitClick"
+            type="com.mmnuradityo.openrepo.utils.ActionClick" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/normal_size">
+
+        <FrameLayout
+            android:id="@+id/bottomSlider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/smaller_size"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <View
+                android:layout_width="80dp"
+                android:layout_height="@dimen/small_size"
+                android:layout_gravity="center_horizontal|top"
+                android:background="@drawable/ic_circle" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/btnHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_bg_bottom_sheet_menu"
+            android:backgroundTint="@color/colorPrimary"
+            android:gravity="center_vertical"
+            android:onClick="@{() -> menuClick.onClick()}"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/large_size"
+            android:paddingTop="@dimen/large_size"
+            android:paddingEnd="@dimen/large_size"
+            android:paddingBottom="@dimen/normal_size"
+            app:layout_constraintTop_toBottomOf="@id/bottomSlider">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="@dimen/large_size"
+                android:src="@drawable/ic_openrepo"
+                android:tint="@color/white"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textColor="@color/white"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_rectangle_green"
+            android:gravity="center_vertical"
+            android:onClick="@{() -> searchClick.onClick()}"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/large_size"
+            android:paddingTop="@dimen/normal_size"
+            android:paddingEnd="@dimen/large_size"
+            android:paddingBottom="@dimen/normal_size"
+            app:layout_constraintTop_toBottomOf="@id/btnHome">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="@dimen/large_size"
+                android:src="@drawable/ic_search"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Search Repository"
+                android:textColor="@color/white"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_rectangle_green"
+            android:gravity="center_vertical"
+            android:onClick="@{() -> settingClick.onClick()}"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/large_size"
+            android:paddingTop="@dimen/normal_size"
+            android:paddingEnd="@dimen/large_size"
+            android:paddingBottom="@dimen/normal_size"
+            app:layout_constraintTop_toBottomOf="@id/btnSearch">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="@dimen/large_size"
+                android:src="@drawable/ic_settings"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Settings"
+                android:textColor="@color/white"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnExit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_rectangle_green"
+            android:gravity="center_vertical"
+            android:onClick="@{() -> exitClick.onClick()}"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/large_size"
+            android:paddingTop="@dimen/normal_size"
+            android:paddingEnd="@dimen/large_size"
+            android:paddingBottom="@dimen/large_size"
+            app:layout_constraintTop_toBottomOf="@id/btnSettings">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginEnd="@dimen/large_size"
+                android:src="@drawable/ic_exit"
+                android:tint="@color/white"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Exit"
+                android:textColor="@color/white"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,77 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textViewStyle">@style/AppTheme.CustomTextView</item>
+        <item name="buttonStyle">@style/AppTheme.CustomButton</item>
+        <item name="android:switchStyle">@style/AppTheme.CustomSwitch</item>
+        <item name="switchStyle">@style/AppTheme.CustomSwitch</item>
+        <item name="editTextStyle">@style/AppTheme.CustomEditText</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.CustomTextView" parent="@android:style/TextAppearance.Widget.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">@font/nunito_light</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textColorLink">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme.CustomButton" parent="@android:style/Widget.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/nunito_light</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">@drawable/bg_button</item>
+        <item name="android:elevation" tools:ignore="NewApi">0dp</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:paddingStart" tools:ignore="NewApi">16dp</item>
+        <item name="android:paddingEnd" tools:ignore="NewApi">16dp</item>
+        <item name="android:minWidth">68dp</item>
+    </style>
+
+    <style name="AppTheme.CustomEditText" parent="@android:style/Widget.EditText">
+        <item name="android:background">@drawable/bg_input_text</item>
+        <item name="android:fontFamily">@font/nunito_light</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textColorHint">@color/secondaryTextColor</item>
+    </style>
+
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_bottom_sheet_menu</item>
+    </style>
+
+    <style name="AppTheme.CustomSwitch" parent="@style/Widget.AppCompat.CompoundButton.Switch">
+        <item name="colorControlActivated">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/colorGray</item>
+        <item name="android:track">@drawable/bg_switch_on_off</item>
+        <item name="android:thumb">@drawable/ic_circle_thumb</item>
+        <item name="switchTextAppearance">@style/CustomSwitchText</item>
+        <item name="android:textOn">@string/switch_blank_text</item>
+        <item name="android:textOff">@string/switch_blank_text</item>
+        <item name="android:thumbTextPadding">12dp</item>
+        <item name="android:switchPadding">12dp</item>
+        <item name="android:checked">false</item>
+    </style>
+
+    <style name="CustomSwitchText" parent="TextAppearance.AppCompat.Widget.Switch">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+</resources>

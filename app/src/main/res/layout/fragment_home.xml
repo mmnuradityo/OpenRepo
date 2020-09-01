@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="followerClick"
+            type="com.mmnuradityo.openrepo.utils.ActionClick" />
+
+        <variable
+            name="followingClick"
+            type="com.mmnuradityo.openrepo.utils.ActionClick" />
+
+        <variable
+            name="repoClick"
+            type="com.mmnuradityo.openrepo.utils.ActionClick"/>
+
+        <variable
+            name="drag"
+            type="com.google.android.material.appbar.AppBarLayout.OnOffsetChangedListener" />
+
+        <variable
+            name="vm"
+            type="com.mmnuradityo.openrepo.viewmodel.HomeVM" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/rootContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background"
+            android:fitsSystemWindows="true"
+            app:dragListener="@{drag}">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsingLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+                app:toolbarId="@+id/toolbar">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/large_size"
+                    android:paddingBottom="@dimen/normal_size"
+                    app:layout_collapseMode="parallax">
+
+                    <ImageView
+                        android:id="@+id/ivLanguage"
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/large_size"
+                        app:avatarUrl="@{vm.profile.avatarUrl}"
+                        app:layout_collapseMode="parallax"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/tvUserName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_size"
+                        android:gravity="center"
+                        android:text="@{vm.profile.name}"
+                        android:textColor="@color/colorIcon"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_collapseMode="pin"
+                        app:layout_constraintTop_toBottomOf="@+id/ivLanguage" />
+
+                    <LinearLayout
+                        android:id="@+id/followerContainer"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_size"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_marginStart="@dimen/large_size"
+                        android:layout_marginEnd="@dimen/normal_size"
+                        android:background="@drawable/ic_ripple_circle"
+                        android:onClick="@{()-> followerClick.onClick()}"
+                        app:layout_constraintEnd_toStartOf="@+id/followingContainer"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvUserName">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/small_size"
+                            android:gravity="center"
+                            android:text="Follower"
+                            android:textColor="@color/textColor"
+                            android:textSize="12sp"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/tvFollower"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            tools:text="@{vm.profile.followers}" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/followingContainer"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_size"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_marginStart="@dimen/normal_size"
+                        android:layout_marginEnd="@dimen/normal_size"
+                        android:background="@drawable/ic_ripple_circle"
+                        android:onClick="@{()-> followingClick.onClick()}"
+                        app:layout_constraintEnd_toStartOf="@+id/repoContainer"
+                        app:layout_constraintStart_toEndOf="@+id/followerContainer"
+                        app:layout_constraintTop_toBottomOf="@+id/tvUserName">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/small_size"
+                            android:gravity="center"
+                            android:text="Following"
+                            android:textColor="@color/textColor"
+                            android:textSize="12sp"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/tvFollowing"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            tools:text="@{vm.profile.following}" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/repoContainer"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/large_size"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:layout_marginStart="@dimen/normal_size"
+                        android:layout_marginEnd="@dimen/large_size"
+                        android:background="@drawable/ic_ripple_circle"
+                        android:onClick="@{()-> repoClick.onClick()}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/followingContainer"
+                        app:layout_constraintTop_toBottomOf="@+id/tvUserName">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/small_size"
+                            android:gravity="center"
+                            android:text="Repositories"
+                            android:textColor="@color/textColor"
+                            android:textSize="12sp"
+                            tools:ignore="HardcodedText" />
+
+                        <TextView
+                            android:id="@+id/tvRepos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@{vm.profile.publicRepos}"
+                            android:textColor="@color/colorAccent"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="26dp"
+                    app:contentInsetLeft="0dp"
+                    app:contentInsetStart="0dp"
+                    app:layout_collapseMode="pin"
+                    app:layout_scrollFlags="scroll|enterAlways" >
+
+                    <FrameLayout
+                        android:id="@+id/appbarSlider"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="gone">
+
+                        <View
+                            android:layout_width="80dp"
+                            android:layout_height="@dimen/small_size"
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_circle" />
+
+                    </FrameLayout>
+
+                </androidx.appcompat.widget.Toolbar>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRepos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="false"
+            android:animationCache="false"
+            android:clipToPadding="false"
+            android:layoutAnimation="@null"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            android:paddingTop="@dimen/normal_size"
+            android:paddingStart="@dimen/normal_size"
+            android:paddingEnd="@dimen/normal_size"
+            android:paddingBottom="50dp"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:repoList="@{vm.repoList}"
+            app:repoLoading="@{vm.repoLoading}"
+            app:repoScrollListener="@{vm}"
+            app:spanCount="2" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
