@@ -14,6 +14,8 @@ import com.mmnuradityo.openrepo.utils.showText
  */
 abstract class BaseFragment<T : Fragment> : Fragment(), BaseComponent.Fragment {
 
+    private var baseComponent: BaseActivity? = null
+
     companion object {
         private const val DATA_KEY = "data_key"
 
@@ -29,6 +31,7 @@ abstract class BaseFragment<T : Fragment> : Fragment(), BaseComponent.Fragment {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        baseComponent = activity as BaseActivity
         initComponent(savedInstanceState)
     }
 
@@ -49,6 +52,8 @@ abstract class BaseFragment<T : Fragment> : Fragment(), BaseComponent.Fragment {
         super.onActivityCreated(savedInstanceState)
         listener()
     }
+
+    override fun getComponent(): BaseActivity = baseComponent!!
 
     override fun onError(throwable: Throwable?) {
         throwable?.message?.let { message -> activity?.showText(message) }

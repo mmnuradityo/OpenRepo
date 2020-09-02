@@ -9,7 +9,6 @@ import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.mmnuradityo.openrepo.R
-import com.mmnuradityo.openrepo.base.BaseActivity
 import com.mmnuradityo.openrepo.base.BaseFragment
 import com.mmnuradityo.openrepo.base.obtainVM
 import com.mmnuradityo.openrepo.data.viewstate.ViewState
@@ -45,7 +44,7 @@ class LoginFragment : BaseFragment<LoginFragment>() {
     }
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
-        viewBinding.vm = (activity as BaseActivity).obtainVM(LoginVM::class.java).apply {
+        viewBinding.vm = getComponent().obtainVM(LoginVM::class.java).apply {
             isBtnActive.set(true)
         }
     }

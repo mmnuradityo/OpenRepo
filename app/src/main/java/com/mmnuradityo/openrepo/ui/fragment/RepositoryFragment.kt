@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import com.mmnuradityo.openrepo.R
-import com.mmnuradityo.openrepo.base.BaseActivity
 import com.mmnuradityo.openrepo.base.BaseFragment
 import com.mmnuradityo.openrepo.base.obtainVM
 import com.mmnuradityo.openrepo.data.model.repository.GithubRepository
@@ -53,7 +52,7 @@ class RepositoryFragment : BaseFragment<RepositoryFragment>() {
         v?.startAnimation(AnimationUtils.loadAnimation(activity, R.anim.zoom_in))
         (activity as MainActivity).showSearch(false)
 
-        viewBinding.vm = (activity as BaseActivity).obtainVM(RepositoryVM::class.java).apply {
+        viewBinding.vm = getComponent().obtainVM(RepositoryVM::class.java).apply {
             dataRepository?.let {
                 data.set(it)
                 start()

@@ -10,7 +10,6 @@ import androidx.databinding.BindingAdapter
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.mmnuradityo.openrepo.R
-import com.mmnuradityo.openrepo.base.BaseActivity
 import com.mmnuradityo.openrepo.base.BaseFragment
 import com.mmnuradityo.openrepo.base.obtainVM
 import com.mmnuradityo.openrepo.data.model.follower.Follower
@@ -56,7 +55,7 @@ class FollowFragment : BaseFragment<FollowFragment>() {
     }
 
     override fun initView(view: View, savedInstanceState: Bundle?) {
-        viewBinding.vm = (activity as BaseActivity).obtainVM(FollowerVM::class.java).apply {
+        viewBinding.vm = getComponent().obtainVM(FollowerVM::class.java).apply {
             activity?.let {
                 viewBinding.rvFollowers.adapter = RvFollowersAdapter(it, this)
                 viewBinding.rvFollowing.adapter = RvFollowersAdapter(it, this)

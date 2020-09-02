@@ -8,11 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.OvershootInterpolator
 import androidx.databinding.BindingAdapter
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.mmnuradityo.openrepo.R
-import com.mmnuradityo.openrepo.base.BaseActivity
 import com.mmnuradityo.openrepo.base.BaseFragment
 import com.mmnuradityo.openrepo.base.obtainVM
 import com.mmnuradityo.openrepo.base.replaceFragmentWithBackStack
@@ -52,7 +50,7 @@ class SearchFragment : BaseFragment<SearchFragment>() {
     override fun initView(view: View, savedInstanceState: Bundle?) {
         (activity as MainActivity).adjustFrameSearch(true)
 
-        viewBinding.vm = (activity as BaseActivity).obtainVM(SearchVM::class.java).apply {
+        viewBinding.vm = getComponent().obtainVM(SearchVM::class.java).apply {
             viewBinding.rvReposSearch.adapter = RvSearchRepoAdapter(this)
         }
     }

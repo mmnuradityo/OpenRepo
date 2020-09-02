@@ -3,8 +3,6 @@ package com.mmnuradityo.openrepo.ui.fragment
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.AppBarLayout.Behavior.DragCallback
 import com.mmnuradityo.openrepo.R
-import com.mmnuradityo.openrepo.base.BaseActivity
 import com.mmnuradityo.openrepo.base.BaseFragment
 import com.mmnuradityo.openrepo.base.obtainVM
 import com.mmnuradityo.openrepo.base.replaceFragmentWithBackStack
@@ -42,6 +39,7 @@ class HomeFragment : BaseFragment<HomeFragment>() {
 
     private lateinit var viewBinding: FragmentHomeBinding
     private var dataProfile: GithubProfile? = null
+    private var appbarExpanded: Boolean = false
 
     companion object {
         private const val DATA_PROFILE = "data_profile"
@@ -68,7 +66,7 @@ class HomeFragment : BaseFragment<HomeFragment>() {
 
     @SuppressLint("ClickableViewAccessibility")
     override fun initView(view: View, savedInstanceState: Bundle?) {
-        viewBinding.vm = (activity as BaseActivity).obtainVM(HomeVM::class.java).apply {
+        viewBinding.vm = getComponent().obtainVM(HomeVM::class.java).apply {
             setupLoadDataSize(10)
 
             viewBinding.rvRepos.adapter = RvRepoAdapter(this)
@@ -99,7 +97,7 @@ class HomeFragment : BaseFragment<HomeFragment>() {
             activity?.let {
                 followerClick = object : ActionClick {
                     override fun onClick() {
-                        (it as BaseActivity).replaceFragmentWithBackStack(
+                        getComponent().replaceFragmentWithBackStack(
                             (it as MainActivity).getFrameFragment(),
                             FollowFragment.newInstance(FollowFragment.FOLLOWERS)
                         )
@@ -108,7 +106,7 @@ class HomeFragment : BaseFragment<HomeFragment>() {
 
                 followingClick = object : ActionClick {
                     override fun onClick() {
-                        (it as BaseActivity).replaceFragmentWithBackStack(
+                        getComponent().replaceFragmentWithBackStack(
                             (it as MainActivity).getFrameFragment(),
                             FollowFragment.newInstance(FollowFragment.FOLLOWING)
                         )
@@ -118,6 +116,7 @@ class HomeFragment : BaseFragment<HomeFragment>() {
 
             repoClick = object : ActionClick {
                 override fun onClick() {
+                    appbarExpanded = true
                     viewBinding.appbar.setExpanded(false)
                 }
             }
@@ -132,10 +131,12 @@ class HomeFragment : BaseFragment<HomeFragment>() {
 
             if (visibility == View.GONE) {
                 if (fraction == 1f) {
+                    appbarExpanded = true
                     startAnimation(anim)
                     visibility = View.VISIBLE
                 }
             } else if (fraction != 1f) {
+                appbarExpanded = false
                 visibility = View.GONE
             }
         }
@@ -154,7 +155,10 @@ class HomeFragment : BaseFragment<HomeFragment>() {
 
     override fun onResume() {
         super.onResume()
-        viewBinding.vm?.getRepoData(1)
+        viewBinding.apply {
+            appbar.setExpanded(!appbarExpanded)
+            vm?.getRepoData()
+        }
     }
 
     object HomeBinding {
@@ -185,9 +189,7 @@ class HomeFragment : BaseFragment<HomeFragment>() {
         fun repoScrollListener(rv: RecyclerView, vm: HomeVM) {
             rv.itemAnimator = SlideInUpAnimator(OvershootInterpolator(1f))
             rv.addOnScrollListener(RvEndlessListener(rv.layoutManager) {
-                Handler(Looper.getMainLooper()).postDelayed({
-                    vm.getRepoData(it + 1)
-                }, 1000)
+                vm.getRepoData(it + 1)
             })
         }
 

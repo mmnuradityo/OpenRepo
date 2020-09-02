@@ -1,8 +1,21 @@
-<vector android:height="48dp" android:viewportHeight="191"
-    android:viewportWidth="191" android:width="48dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <path android:fillColor="@color/colorPrimary" android:pathData="M35.355,95.355m-17.678,17.678a25,25 75.6,1 1,35.355 -35.355a25,25 75.6,1 1,-35.355 35.355"/>
-    <path android:fillColor="@color/colorPrimary" android:pathData="M95.355,35.355m-17.678,17.678a25,25 85.659,1 1,35.355 -35.355a25,25 85.659,1 1,-35.355 35.355"/>
-    <path android:fillColor="@color/colorPrimary" android:pathData="M155.355,95.355m-17.678,17.678a25,25 0,1 1,35.355 -35.355a25,25 0,1 1,-35.355 35.355"/>
-    <path android:fillColor="@color/colorPrimary" android:pathData="M95.073,95.355m-17.678,17.678a25,25 0,1 1,35.355 -35.355a25,25 0,1 1,-35.355 35.355"/>
-    <path android:fillColor="@color/colorPrimary" android:pathData="M95.355,155.355m-17.678,17.678a25,25 0,1 1,35.355 -35.355a25,25 0,1 1,-35.355 35.355"/>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="191"
+    android:viewportHeight="191">
+    <path
+        android:fillColor="@color/colorPrimary"
+        android:pathData="M35.355,95.355m-17.678,17.678a25,25 75.6,1 1,35.355 -35.355a25,25 75.6,1 1,-35.355 35.355" />
+    <path
+        android:fillColor="@color/colorPrimary"
+        android:pathData="M95.355,35.355m-17.678,17.678a25,25 85.659,1 1,35.355 -35.355a25,25 85.659,1 1,-35.355 35.355" />
+    <path
+        android:fillColor="@color/colorPrimary"
+        android:pathData="M155.355,95.355m-17.678,17.678a25,25 0,1 1,35.355 -35.355a25,25 0,1 1,-35.355 35.355" />
+    <path
+        android:fillColor="@color/colorPrimary"
+        android:pathData="M95.073,95.355m-17.678,17.678a25,25 0,1 1,35.355 -35.355a25,25 0,1 1,-35.355 35.355" />
+    <path
+        android:fillColor="@color/colorPrimary"
+        android:pathData="M95.355,155.355m-17.678,17.678a25,25 0,1 1,35.355 -35.355a25,25 0,1 1,-35.355 35.355" />
 </vector>

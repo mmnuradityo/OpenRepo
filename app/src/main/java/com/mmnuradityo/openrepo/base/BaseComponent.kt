@@ -26,6 +26,8 @@ class BaseComponent {
         ): View?
 
         fun initView(view: View, savedInstanceState: Bundle?)
+
+        fun getComponent(): BaseActivity
     }
 
     interface Component {
