@@ -326,6 +326,11 @@ class MainActivity : BaseActivity() {
         logoutDialog.show()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        viewBinding.vm?.finish()
+    }
+
     object MainBinding {
         @JvmStatic
         @BindingAdapter("app:startAnim")

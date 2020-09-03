@@ -23,7 +23,7 @@ import io.reactivex.rxjava3.functions.Consumer
 class HomeVM(application: Application, private val repository: Repository) :
     BaseVM(application, ViewState()) {
 
-    private var currentPage: Int? = 0
+    private var loadPage: Int? = 0
     private var perPage: Int = 15
     val profile: ObservableField<GithubProfile> = ObservableField()
     val repoList: ObservableList<GithubRepository> = ObservableArrayList()
@@ -40,40 +40,53 @@ class HomeVM(application: Application, private val repository: Repository) :
     }
 
     private fun getProfile() {
-        repository.getProfile(
-            Consumer {
-                profile.set(it)
+        addDisposable(
+            repository.getProfile(
+                Consumer {
+                    profile.set(it)
 
-                Handler(Looper.getMainLooper()).postDelayed({
-                    setViewState(isSuccess = true)
-                }, 1000)
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        setViewState(isSuccess = true)
+                    }, 1000)
 
-            }, Consumer { setViewState(isError = it) })
+                }, Consumer { setViewState(isError = it) })
+        )
     }
 
     fun getRepoData() {
-        if (currentPage != null) {
-            currentPage = currentPage!! + 1
-            getRepoData(currentPage!!)
+        if (loadPage != null) {
+            loadPage = loadPage!! + 1
+            getRepoData(loadPage!!)
         } else {
             repoLoading.set(false)
         }
     }
 
     fun getRepoData(page: Int) {
-        repository.getRepositories(page, perPage,
-            Consumer {
-                currentPage = (if (it.isEmpty()) null else page)
-                Handler(Looper.getMainLooper()).postDelayed({
-                    repoLoading.set(it.isNotEmpty())
-                    compare(repoList, it)
-                }, 1000)
-            },
-            Consumer {
-                currentPage = null
-                repoLoading.set(false)
-                setViewState(isError = it)
-            })
+        if (loadPage != null) {
+            loadPage = page
+
+            addDisposable(
+                repository.getRepositories(loadPage!!, perPage,
+                    Consumer {
+                        if (perPage > it.size) {
+                            loadPage = null
+                        }
+
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            if (perPage == it.size) repoLoading.set(it.isNotEmpty())
+                            compare(repoList, it)
+                        }, 1000)
+                    },
+                    Consumer {
+                        loadPage = null
+                        repoLoading.set(false)
+                        setViewState(isError = it)
+                    })
+            )
+        } else {
+            repoLoading.set(false)
+        }
     }
 
     fun hideKeyboard() {

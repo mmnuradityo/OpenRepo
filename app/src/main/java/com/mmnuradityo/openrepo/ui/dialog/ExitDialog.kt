@@ -30,6 +30,7 @@ class ExitDialog(private val activity: Activity) : Dialog(activity) {
         }
 
         btnYes.setOnClickListener {
+            dismiss()
             activity.finish()
         }
     }

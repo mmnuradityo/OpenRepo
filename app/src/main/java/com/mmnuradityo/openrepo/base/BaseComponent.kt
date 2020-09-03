@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
+import io.reactivex.rxjava3.disposables.Disposable
 
 /**
  * Created on : 01/09/20
@@ -68,6 +69,10 @@ class BaseComponent {
             isSuccess: Boolean? = false,
             isError: Throwable? = null
         )
+
+        fun addDisposable(dispose: Disposable)
+
+        fun finish()
     }
 
 }

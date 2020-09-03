@@ -91,6 +91,11 @@ class FollowFragment : BaseFragment<FollowFragment>() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        viewBinding.vm?.finish()
+    }
+
     private fun showOrHideList(mode: Int) {
         viewBinding.apply {
             if (mode == FOLLOWERS) {

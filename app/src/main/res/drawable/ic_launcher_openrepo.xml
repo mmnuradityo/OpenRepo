@@ -16,6 +16,6 @@
         </shape>
     </item>
 
-    <item android:drawable="@drawable/icon_openrepo" />
+    <item android:drawable="@drawable/icon_launcher" />
 
 </layer-list>

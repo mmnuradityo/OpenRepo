@@ -71,7 +71,6 @@ class RvRepoAdapter(vm: HomeVM) : BaseRvAdapter<HomeVM, GithubRepository>(vm) {
         if (listOfView[position] != LOADING) {
             listOfView.add(LOADING)
             notifyItemInserted(position)
-            notifyItemRangeRemoved(position, itemCount)
         }
     }
 
@@ -79,7 +78,6 @@ class RvRepoAdapter(vm: HomeVM) : BaseRvAdapter<HomeVM, GithubRepository>(vm) {
         val position = listOfView.size
         listOfView.add(LOADING)
         notifyItemInserted(position)
-        notifyItemRangeRemoved(position, itemCount)
     }
 
     fun removeLoading() {

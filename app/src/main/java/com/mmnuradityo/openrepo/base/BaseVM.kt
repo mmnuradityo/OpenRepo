@@ -6,6 +6,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.mmnuradityo.openrepo.data.viewstate.ViewState
 import com.mmnuradityo.openrepo.utils.SingleLiveEvent
+import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.Disposable
 
 /**
  * Created on : 01/09/20
@@ -17,6 +19,7 @@ abstract class BaseVM(application: Application, private val viewStateCondition: 
 
     private val stateCondition = SingleLiveEvent<ViewState>().apply { value = viewStateCondition }
     val viewState: LiveData<ViewState> get() = stateCondition
+    private val disposable = CompositeDisposable()
 
     override fun start() {
         setViewState(isLoad = true)
@@ -41,4 +44,13 @@ abstract class BaseVM(application: Application, private val viewStateCondition: 
         }
     }
 
+    override fun addDisposable(dispose: Disposable) {
+        disposable.add(dispose)
+    }
+
+    override fun finish() {
+        if (!disposable.isDisposed) {
+            disposable.dispose()
+        }
+    }
 }

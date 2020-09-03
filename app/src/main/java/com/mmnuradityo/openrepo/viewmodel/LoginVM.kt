@@ -16,7 +16,7 @@ import io.reactivex.rxjava3.functions.Consumer
 class LoginVM(application: Application, private val repository: Repository) :
     BaseVM(application, ViewState()) {
 
-    val isBtnActive : ObservableField<Boolean> = ObservableField()
+    val isBtnActive: ObservableField<Boolean> = ObservableField()
 
     fun login(userName: String, password: String) {
         val text = LoginUtils.validate(userName, password)
@@ -25,20 +25,22 @@ class LoginVM(application: Application, private val repository: Repository) :
             setViewState(isLoad = true)
             isBtnActive.set(false)
 
-            repository.login(userName, password,
-                Consumer {
-                    if (it != null) {
-                        login(userName)
-                        setViewState(isSuccess = true)
-                    } else {
+            addDisposable(
+                repository.login(userName, password,
+                    Consumer {
+                        if (it != null) {
+                            login(userName)
+                            setViewState(isSuccess = true)
+                        } else {
+                            login("")
+                            throw Throwable("Something wrong!")
+                        }
+                    },
+                    Consumer {
                         login("")
-                        throw Throwable("Something wrong!")
-                    }
-                },
-                Consumer {
-                    login("")
-                    setViewState(isError = it)
-                })
+                        setViewState(isError = it)
+                    })
+            )
         } else {
             login("")
             setViewState(isError = Throwable(text))

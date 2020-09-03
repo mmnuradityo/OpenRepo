@@ -58,15 +58,17 @@ class MainVM(application: Application, private val repository: Repository) :
     }
 
     private fun getProfile() {
-        repository.getProfile(
-            Consumer {
-                profileSet.value = it
+        addDisposable(
+            repository.getProfile(
+                Consumer {
+                    profileSet.value = it
 
-                Handler(Looper.getMainLooper()).postDelayed({
-                    setViewState(isSuccess = true)
-                }, 1500)
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        setViewState(isSuccess = true)
+                    }, 1500)
 
-            }, Consumer { setViewState(isError = it) })
+                }, Consumer { setViewState(isError = it) })
+        )
     }
 
     fun logout() {

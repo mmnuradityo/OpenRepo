@@ -27,24 +27,28 @@ class FollowerVM(application: Application, private val repository: Repository) :
     }
 
     private fun getFollowers() {
-        repository.getFollowers(Consumer {
-            it?.let {
-                followerList.addAll(it)
-                setViewState(isSuccess = true)
-            }
-        }, Consumer {
-            setViewState(isError = it)
-        })
+        addDisposable(
+            repository.getFollowers(Consumer {
+                it?.let {
+                    followerList.addAll(it)
+                    setViewState(isSuccess = true)
+                }
+            }, Consumer {
+                setViewState(isError = it)
+            })
+        )
     }
 
     private fun getFollowing() {
-        repository.getFollowing(Consumer {
-            it?.let {
-                followingList.addAll(it)
-                setViewState(isSuccess = true)
-            }
-        }, Consumer {
-            setViewState(isError = it)
-        })
+        addDisposable(
+            repository.getFollowing(Consumer {
+                it?.let {
+                    followingList.addAll(it)
+                    setViewState(isSuccess = true)
+                }
+            }, Consumer {
+                setViewState(isError = it)
+            })
+        )
     }
 }

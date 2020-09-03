@@ -68,7 +68,6 @@ class HomeFragment : BaseFragment<HomeFragment>() {
     override fun initView(view: View, savedInstanceState: Bundle?) {
         viewBinding.vm = getComponent().obtainVM(HomeVM::class.java).apply {
             setupLoadDataSize(10)
-
             viewBinding.rvRepos.adapter = RvRepoAdapter(this)
             (viewBinding.rvRepos.adapter as RvRepoAdapter).firstLoading()
 
@@ -161,6 +160,12 @@ class HomeFragment : BaseFragment<HomeFragment>() {
         }
     }
 
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewBinding.vm?.finish()
+    }
+
     object HomeBinding {
         @JvmStatic
         @BindingAdapter("app:dragListener")
@@ -196,7 +201,10 @@ class HomeFragment : BaseFragment<HomeFragment>() {
         @JvmStatic
         @BindingAdapter("app:repoLoading")
         fun onLoading(rv: RecyclerView, isActive: Boolean?) {
-            isActive?.let { if (!it) (rv.adapter as RvRepoAdapter).removeLoading() }
+            isActive?.let {
+                if (!it)
+                    (rv.adapter as RvRepoAdapter).removeLoading()
+            }
         }
     }
 

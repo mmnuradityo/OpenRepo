@@ -83,9 +83,9 @@ class RvEndlessListener constructor(
                 }
 
                 if (!loading && (totalItemCount - visibleItemCount) <= (firstVisibleItemPosition + visibleThreshold)) {
+                    loading = true
                     currentPage++
                     loadMore(currentPage)
-                    loading = true
                 }
 
                 scrollDown

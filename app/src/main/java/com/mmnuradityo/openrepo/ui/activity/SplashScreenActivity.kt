@@ -1,9 +1,9 @@
 package com.mmnuradityo.openrepo.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import com.mmnuradityo.openrepo.R
 
 /**
@@ -20,4 +20,5 @@ class SplashScreenActivity : AppCompatActivity() {
             MainActivity.generateIntent(this)
         }, 3000)
     }
+
 }

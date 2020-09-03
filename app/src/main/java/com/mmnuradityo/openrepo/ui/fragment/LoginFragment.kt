@@ -107,4 +107,10 @@ class LoginFragment : BaseFragment<LoginFragment>() {
             customTabsIntent.launchUrl(it, Uri.parse(url))
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewBinding.vm?.finish()
+    }
+
 }
