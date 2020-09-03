@@ -59,4 +59,13 @@ ext {
     junit = "junit:junit:${junitVersion}"
     androidxJunit = "androidx.test.ext:junit:${androidxJunitVersion}"
     androidxEspresso = "androidx.test.espresso:espresso-core:${androidxEspressoVersion}"
+
+    setupDependencies = [
+            appComponent.values(),
+            architectureComponent.values(),
+            animator.values(),
+            rx.values(),
+            network.values(),
+            imageLoader.values()
+    ]
 }
