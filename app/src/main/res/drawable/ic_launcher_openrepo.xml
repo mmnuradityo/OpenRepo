@@ -4,7 +4,7 @@
     <item android:id="@android:id/background">
         <shape>
             <corners android:radius="1000dp" />
-            <solid android:color="@color/white" />
+            <solid android:color="#FFF" />
             <padding
                 android:bottom="@dimen/small_size"
                 android:left="@dimen/small_size"
@@ -16,6 +16,6 @@
         </shape>
     </item>
 
-    <item android:drawable="@drawable/ic_openrepo" />
+    <item android:drawable="@drawable/icon_openrepo" />
 
 </layer-list>

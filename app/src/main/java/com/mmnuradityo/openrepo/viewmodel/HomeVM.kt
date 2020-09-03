@@ -53,7 +53,8 @@ class HomeVM(application: Application, private val repository: Repository) :
 
     fun getRepoData() {
         if (currentPage != null) {
-            getRepoData(currentPage!! + 1)
+            currentPage = currentPage!! + 1
+            getRepoData(currentPage!!)
         } else {
             repoLoading.set(false)
         }
