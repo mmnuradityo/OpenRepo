@@ -1,5 +1,6 @@
 package com.mmnuradityo.openrepo.base
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -32,7 +33,11 @@ abstract class BaseFragment<T : Fragment> : Fragment(), BaseComponent.Fragment {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         baseComponent = activity as BaseActivity
-        initComponent(savedInstanceState)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        initComponent(context)
     }
 
     override fun onCreateView(

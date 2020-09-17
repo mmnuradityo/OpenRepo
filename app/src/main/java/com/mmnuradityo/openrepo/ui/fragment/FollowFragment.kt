@@ -1,5 +1,6 @@
 package com.mmnuradityo.openrepo.ui.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -41,7 +42,7 @@ class FollowFragment : BaseFragment<FollowFragment>() {
         }
     }
 
-    override fun initComponent(savedInstanceState: Bundle?) {
+    override fun initComponent(context: Context) {
         dataMode = arguments?.getInt(MODE, 0)
     }
 

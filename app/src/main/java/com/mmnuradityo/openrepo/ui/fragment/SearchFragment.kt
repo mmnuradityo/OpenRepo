@@ -1,5 +1,6 @@
 package com.mmnuradityo.openrepo.ui.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -35,7 +36,7 @@ class SearchFragment : BaseFragment<SearchFragment>() {
         fun newInstance() = generateInstance(SearchFragment())
     }
 
-    override fun initComponent(savedInstanceState: Bundle?) {
+    override fun initComponent(context: Context) {
     }
 
     override fun initViewComponent(

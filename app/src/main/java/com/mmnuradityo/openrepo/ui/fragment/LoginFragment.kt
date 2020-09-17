@@ -1,5 +1,6 @@
 package com.mmnuradityo.openrepo.ui.fragment
 
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -31,7 +32,7 @@ class LoginFragment : BaseFragment<LoginFragment>() {
         fun newInstance() = generateInstance(LoginFragment())
     }
 
-    override fun initComponent(savedInstanceState: Bundle?) {
+    override fun initComponent(context: Context) {
     }
 
     override fun initViewComponent(

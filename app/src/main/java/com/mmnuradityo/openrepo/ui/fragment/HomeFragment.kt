@@ -51,7 +51,7 @@ class HomeFragment : BaseFragment<HomeFragment>() {
         }
     }
 
-    override fun initComponent(savedInstanceState: Bundle?) {
+    override fun initComponent(context: Context) {
         dataProfile = arguments?.getParcelable(DATA_PROFILE)
     }
 

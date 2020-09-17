@@ -1,5 +1,6 @@
 package com.mmnuradityo.openrepo.base
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,10 +18,14 @@ class BaseComponent {
     interface Activity : Component {
         fun injectLayout(): Int
 
+        fun initComponent(savedInstanceState: Bundle?)
+
         fun initView()
     }
 
     interface Fragment : Component {
+        fun initComponent(context: Context)
+
         fun initViewComponent(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -32,8 +37,6 @@ class BaseComponent {
     }
 
     interface Component {
-        fun initComponent(savedInstanceState: Bundle?)
-
         fun listener()
 
         fun onError(throwable: Throwable?)

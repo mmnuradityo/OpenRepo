@@ -1,5 +1,6 @@
 package com.mmnuradityo.openrepo.ui.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,7 +35,7 @@ class RepositoryFragment : BaseFragment<RepositoryFragment>() {
         }
     }
 
-    override fun initComponent(savedInstanceState: Bundle?) {
+    override fun initComponent(context: Context) {
         dataRepository = arguments?.getParcelable(DATA_REPOSITORY)
     }
 
